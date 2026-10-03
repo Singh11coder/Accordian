@@ -50,31 +50,32 @@ const Accordians = () => {
               <div className='title'>
                 <h1>{d.question}</h1>
                 {!enableMultiSelect 
-                 ? <h1>+</h1>
-                 :<div>
-                  {multiple.map((item) => <div>
-                     { 
-                       item === d.id 
-                       ? <h1>-</h1> 
-                       : <h1>+</h1>
-                     }
-                  </div>)}
-                 </div>
-                }
-                 
+                 ?  (
+                 <h1>
+                   {selected === d.id ? "-" : "+"}
+                 </h1>
+                ) : (
+                <h1>
+                   {multiple.includes(d.id) ? "-" : "+"}
+                </h1>
+
+                )}  
               </div>
                { !enableMultiSelect 
-                 ? selected === d.id && (<div className='content'>
-                   <h3>{d.answer}</h3>
-                  </div>) 
-                 :
-                 <div>
-                  {multiple.map((item) => <div>
-                     {item === d.id && <div className='content'>
-                          <h3>{d.answer}</h3>
-                        </div>}
-                  </div>)}
-                 </div>
+               
+                 ?(
+                  selected === d.id && (
+                  <div className="content">
+                  <h3>{d.answer}</h3>
+                  </div>
+                 )) 
+                 : (
+                  multiple.includes(d.id) && (
+                  <div className="content">
+                  <h3>{d.answer}</h3>
+                  </div>
+                 )
+                 )
                }
               </div>
               
